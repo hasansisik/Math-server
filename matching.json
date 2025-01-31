@@ -1,0 +1,52 @@
+[
+  {
+    "id": "123124",
+    "title": "Eşleştirme Soruları",
+    "accuracy": 40,
+    "questions": [
+      {
+        "title": "1) Aşağıdaki verilen işlemlerini sonuçları ile eşleştiriniz",
+        "question": [
+          "6 x 2 - 2",
+          "6 - 5 - 1",
+          "2 x 4 - 2",
+          "0 x 5 + 8"
+        ],
+        "correctAnswer": [
+          "10",
+          "0",
+          "6",
+          "8"
+        ]
+      },
+      {
+        "title": "2) Aşağıdaki verilen işlemlerini sonuçları ile eşleştiriniz",
+        "question": [
+          "https://i.ibb.co/K66Xsj1/I-want-you-to-make-a-triangle-of-one-color-that-lies-flat.jpg",
+          "https://i.ibb.co/TgKz95x/I-want-you-to-make-a-square-of-one-color-that-lies-flat.jpg",
+          "https://i.ibb.co/0hVBjdb/I-want-you-to-make-a-circle-of-one-color-that-lies-flat-1.jpg"
+        ],
+        "correctAnswer": [
+          "Üçgen",
+          "Kare",
+          "Daire"
+        ]
+      },
+      {
+        "title": "3) Aşağıdaki verilen işlemlerini sonuçları ile eşleştiriniz",
+        "question": [
+          "Onyedi milyon yüz iki bin elli dört",
+          "Yüz yedi milyon on iki bin beş yüz dört",
+          "Yüz yetmiş milyon yüz yirmi bin beş yüz kırk"
+        ],
+        "correctAnswer": [
+          "170 210 540",
+          "170 120 540",
+          "17 120 054",
+          "107 012 504",
+          "17 120 501"
+        ]
+      }
+    ]
+  }
+]
