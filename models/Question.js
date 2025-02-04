@@ -39,6 +39,20 @@ const FractionSchema = new Schema({
   }]
 });
 
+// Fraction Schema
+const SpaceSchema = new Schema({
+  ...CommonFieldsSchema,
+  category: { type: String, default: "Boşluk Doldurma" },
+  questions: [{
+    title: { type: String, required: true },
+    question: [{
+      optionStart: { type: String, required: true },
+      optionEnd: { type: String, required: true },
+      answer: { type: String, required: true }
+    }]
+  }]
+});
+
 // Matching Schema
 const MatchingSchema = new Schema({
   ...CommonFieldsSchema,
@@ -69,6 +83,7 @@ const QuestionSchema = new Schema({
   fraction: { type: Schema.Types.ObjectId, ref: "Fraction", },
   placement: { type: Schema.Types.ObjectId, ref: "Placement",  },
   matching: { type: Schema.Types.ObjectId, ref: "Matching", },
+  space: { type: Schema.Types.ObjectId, ref: "Space", }
 });
 
 // Create models
@@ -76,6 +91,7 @@ const Exams = mongoose.model("Exams", ExamsSchema);
 const Fraction = mongoose.model("Fraction", FractionSchema);
 const Matching = mongoose.model("Matching", MatchingSchema);
 const Placement = mongoose.model("Placement", PlacementSchema);
+const Space = mongoose.model("Space", SpaceSchema);
 const Question = mongoose.model("Question", QuestionSchema);
 
 // Export all models
@@ -84,5 +100,6 @@ module.exports = {
   Exams,
   Fraction,
   Matching,
-  Placement
+  Placement,
+  Space
 };

@@ -1,4 +1,4 @@
-const { Question, Exams, Fraction, Matching, Placement } = require("../models/Question");
+const { Question, Exams, Fraction, Matching, Placement, Space } = require("../models/Question");
 
 // Get all questions
 const getQuestions = async (req, res) => {
@@ -7,11 +7,13 @@ const getQuestions = async (req, res) => {
       .populate('exams')
       .populate('fraction')
       .populate('matching')
-      .populate('placement');
+      .populate('placement')
+      .populate('space');
     res.status(200).json({
       success: true,
       data: questions
     });
+    console.log("questions",questions)
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -322,6 +324,80 @@ const deletePlacement = async (req, res) => {
   }
 };
 
+// Space CRUD Operations
+const createSpace = async (req, res) => {
+  try {
+    const space = await Space.create(req.body);
+    const question = await Question.create({ space: space._id });
+
+    res.status(201).json({
+      success: true,
+      data: space
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+
+const updateSpace = async (req, res) => {
+  try {
+    const space = await Space.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!space) {
+      return res.status(404).json({
+        success: false,
+        error: "Space question not found"
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: space
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+
+const deleteSpace = async (req, res) => {
+  try {
+    const space = await Space.findByIdAndDelete(req.params.id);
+
+    if (!space) {
+      return res.status(404).json({
+        success: false,
+        error: "Space question not found"
+      });
+    }
+
+    // Also delete the reference from Question collection
+    await Question.findOneAndUpdate(
+      { space: req.params.id },
+      { $unset: { space: 1 } }
+    );
+
+    res.status(200).json({
+      success: true,
+      data: {}
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+
 module.exports = {
   getQuestions,
   createExams,
@@ -336,4 +412,7 @@ module.exports = {
   createPlacement,
   updatePlacement,
   deletePlacement,
+  createSpace,
+  updateSpace,
+  deleteSpace,
 };
