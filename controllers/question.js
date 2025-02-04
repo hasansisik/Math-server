@@ -13,7 +13,6 @@ const getQuestions = async (req, res) => {
       success: true,
       data: questions
     });
-    console.log("questions",questions)
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -107,7 +106,6 @@ const createMatching = async (req, res) => {
       data: matching
     });
   } catch (error) {
-    console.log(error)
     res.status(400).json({
       success: false,
       error: error.message
@@ -174,8 +172,6 @@ const deleteMatching = async (req, res) => {
 // Fraction CRUD Operations
 const createFraction = async (req, res) => {
   try {
-    console.log("1",req.body)
-
     const fraction = await Fraction.create(req.body);
     const question = await Question.create({ fraction: fraction._id });
 
@@ -184,8 +180,6 @@ const createFraction = async (req, res) => {
       data: fraction
     });
   } catch (error) {
-    console.log(error)
-
     res.status(400).json({
       success: false,
       error: error.message
@@ -195,7 +189,6 @@ const createFraction = async (req, res) => {
 
 const updateFraction = async (req, res) => {
   try {
-    console.log("update",req.body)
     const fraction = await Fraction.findByIdAndUpdate(
       req.params.id,
       req.body,
