@@ -72,7 +72,7 @@ const PlacementSchema = new Schema({
   questions: [{
     type: { type: String, enum: ['>', '<'], required: true },
     title: { type: String, required: true },
-    correctAnswer: [{ type: Number, required: true }],
+    correctAnswer: [{ type: String, required: true }],
     direction: { type: String, required: true }
   }]
 });
